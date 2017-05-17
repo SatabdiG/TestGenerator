@@ -117,39 +117,45 @@ class Application(tk.Frame):
     """ Called after the root level elems are made """
     """ Creates all the children elems of the root elem in a loop"""
     def done(self):
-        #create a collection of children nodes
-        childnodes = []
-        for nodes in RootElems:
-            if nodes.name != "Root":
-                for eachChild in nodes.children:
-                    childnodes.append(eachChild)
-        
-        print childnodes
-        ###  Get Picture for each child Node ####
-        for eachchild in childnodes:
-            ## Get Parent
-            parentelem  = eachchild.parent.name 
-            print "parent Name"+parentelem           
-            testpos =  pyautogui.locateOnScreen(str("./OracleElements/"+parentelem+".png"))
-            print "position"+str(testpos)
-            posx, posy = pyautogui.center(testpos)
-            pyautogui.click(posx, posy)
-            childNum =  (eachchild.parent.children).index(eachchild)
-            print "childNum"+str(childNum)
-            if childNum == 0:
-                childNum = 1
-            numOff = childNum*childOffsetX        
-            ### Move mouse by childNum times current position
-            newPosX = posx + int((childOffsetX)*childNum)
-            ### Take Screen Shot With Name ###
-            im=pyautogui.screenshot(region=(posx - 30, posy + numOff, 50, 20))
-            im.save("./OracleElements/"+eachchild.name+".png")
+        if(self.filename == ""):
+            self.stausLabel.config(text="Please click Set Values after choosing an option")
+        else:
+            #create a collection of children nodes
+            childnodes = []
+            for nodes in RootElems:
+                if nodes.name != "Root":
+                    for eachChild in nodes.children:
+                        childnodes.append(eachChild)
+            
+            print childnodes
+            ###  Get Picture for each child Node ####
+            for eachchild in childnodes:
+                ## Get Parent
+                parentelem  = eachchild.parent.name 
+                print "parent Name"+parentelem           
+                testpos =  pyautogui.locateOnScreen(str("./OracleElements/"+parentelem+".png"))
+                print "position"+str(testpos)
+                posx, posy = pyautogui.center(testpos)
+                pyautogui.click(posx, posy)
+                childNum =  (eachchild.parent.children).index(eachchild)
+                print "childNum"+str(childNum)
+                if childNum == 0:
+                    childNum = 1
+                numOff = childNum*childOffsetX        
+                ### Move mouse by childNum times current position
+                newPosX = posx + int((childOffsetX)*childNum)
+                ### Take Screen Shot With Name ###
+                im=pyautogui.screenshot(region=(posx - 30, posy + numOff, 50, 20))
+                im.save("./OracleElements/"+eachchild.name+".png")
+            
+            # Update Status label
+            self.stausLabel.config(text="Done")
 
 
 
     def setValue(self):
         self.filename = self.varele.get()   
-        self.stausLabel.config(text="Option chosen as"+ self.filename)
+        self.stausLabel.config(text="Option chosen as: "+ self.filename)
 
 
 
@@ -175,8 +181,6 @@ class Application(tk.Frame):
         self.SetValue.grid(row = 7 , column = 9)
         self.stausLabel =  tk.Label(self, text="Status")
         self.stausLabel.grid(row = 9 , column = 5)
-
-
 
 
 
