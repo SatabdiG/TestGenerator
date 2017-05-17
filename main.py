@@ -19,6 +19,7 @@ childOffsetX = 20
 screenWidth, screenHeight = pyautogui.size()
 client = pymongo.MongoClient()
 db = client.input
+oracleMode = False
 
 
 graphMaster = Graph()
@@ -170,7 +171,10 @@ class Application(tk.Frame):
                     "children" : nodenames
                 })
 
+    
+        
             
+   
 
 
     """ UI for the APP """    
@@ -188,6 +192,7 @@ class Application(tk.Frame):
         """ Add child """
         self.addChild=tk.Button(self, text='Add Child', command = self.addChild)
         self.addChild.grid(row = 16, column =  5 )
+        
         """ State which number child """
         self.labelChild=tk.Label(self, text="Enter ChildNumber")
         self.labelChild.grid(row = 14,column = 5  )
@@ -198,8 +203,8 @@ class Application(tk.Frame):
         self.labelX=tk.Label(self, text="Welcome to input database creator")
         self.labelX.grid(row = 11,column = 5  )
         #The name of the Element
-        self.labelName=tk.Label(self, text="Enter Component Name")
-        self.labelName.grid(row = 3,column = 5  )
+        self.labelNameEle = tk.Label(self, text="Enter Component Name")
+        self.labelNameEle.grid(row = 3,column = 5  )
         self.inputEleName = tk.Entry(self, width = 20)
         self.inputEleName.grid(row = 4 , column = 5)
 
@@ -216,8 +221,8 @@ class Application(tk.Frame):
         self.parentList.grid(row = 4 , column = 7)
 
         #The input Width
-        self.labelName=tk.Label(self, text="Enter Component Width")
-        self.labelName.grid(row = 5,column = 5  )
+        self.labelNameWid=tk.Label(self, text="Enter Component Width")
+        self.labelNameWid.grid(row = 5,column = 5  )
         self.inputWidth = tk.Entry(self, width = 20 )      
         self.inputWidth.grid(row = 6 , column = 5)
         # The input height
