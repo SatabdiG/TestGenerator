@@ -16,7 +16,7 @@ import random
 #Global Variables
 graphmaster = Graph()
 population = Gene()
-maxRun =  3
+maxRun =  1
 matingPool = []
 
 #1 . Reconstruct Tree based on information from input collection
