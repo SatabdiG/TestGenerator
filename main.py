@@ -177,37 +177,53 @@ class Application(tk.Frame):
    
 
 
+    
+    
     """ UI for the APP """    
     def createWidjet(self):
-        self.quitButton=tk.Button(self, text='QUIT', command = self.quitFunc)
-        self.quitButton.grid(row = 9, column = 4 )   
-        self.quitButton=tk.Button(self, text='RESET', command = self.Reset)
-        self.quitButton.grid(row = 9, column =  5 )  
-        self.quitButton=tk.Button(self, text='HELP', command = self.Help)
-        self.quitButton.grid(row = 9, column =  6 )
-        self.detectButton=tk.Button(self, text='DetectTest', command = self.Detect)
-        self.detectButton.grid(row = 13, column =  5 ) 
-        self.Write=tk.Button(self, text='Finish & Write', command = self.Write)
-        self.Write.grid(row = 13, column =  6 ) 
-        """ Add child """
-        self.addChild=tk.Button(self, text='Add Child', command = self.addChild)
-        self.addChild.grid(row = 16, column =  5 )
-        
-        """ State which number child """
-        self.labelChild=tk.Label(self, text="Enter ChildNumber")
-        self.labelChild.grid(row = 14,column = 5  )
-
-        self.inputNumChild = tk.Entry(self , width = 30)
-        self.inputNumChild.grid(row = 15, column = 5)
-
         self.labelX=tk.Label(self, text="Welcome to input database creator")
-        self.labelX.grid(row = 11,column = 5  )
+        self.labelX.grid(row = 1,column = 0  )
+
         #The name of the Element
         self.labelNameEle = tk.Label(self, text="Enter Component Name")
-        self.labelNameEle.grid(row = 3,column = 5  )
+        self.labelNameEle.grid(row = 3)
         self.inputEleName = tk.Entry(self, width = 20)
-        self.inputEleName.grid(row = 4 , column = 5)
+        self.inputEleName.grid(row = 3 , column = 1)
 
+         #The input Width
+        self.labelNameWid=tk.Label(self, text="Enter Component Width")
+        self.labelNameWid.grid(row = 4)
+        self.inputWidth = tk.Entry(self, width = 20 )      
+        self.inputWidth.grid(row = 4 , column = 1)
+        # The input height
+        self.labelHeight=tk.Label(self, text="Enter Component Height")
+        self.labelHeight.grid(row = 5)
+        self.inputHeight = tk.Entry(self, width = 20)
+        self.inputHeight.grid(row = 5 , column = 1)
+
+        """ State which number child """
+        self.labelChild=tk.Label(self, text="Enter ChildNumber")
+        self.labelChild.grid(row = 6)
+
+        self.inputNumChild = tk.Entry(self , width = 20)
+        self.inputNumChild.grid(row = 6, column = 1)        
+
+        #Buttons        
+        self.quitButton=tk.Button(self, text='QUIT', command = self.quitFunc)
+        self.quitButton.grid(row = 7 )   
+        self.resetButton=tk.Button(self, text='RESET', command = self.Reset)
+        self.resetButton.grid(row = 7, column =  1 , sticky = tk.W)  
+        self.helpbutton=tk.Button(self, text='HELP', command = self.Help)
+        self.helpbutton.grid(row = 7, column =  1 , sticky = tk.E )
+        self.detectButton=tk.Button(self, text='DetectTest', command = self.Detect)
+        self.detectButton.grid(row = 7, column =  2 , sticky = tk.W) 
+        self.Write=tk.Button(self, text='Finish & Write', command = self.Write)
+        self.Write.grid(row = 7, column =  2 , sticky = tk.E ) 
+        self.changeText=tk.Button(self, text='Set Values', command = self.changeText)
+        self.changeText.grid(row = 7, column = 4 , sticky =tk.W)
+        """ Add child """
+        self.addChild=tk.Button(self, text='Add Child', command = self.addChild)
+        self.addChild.grid(row = 7, column =  5, sticky =tk.E)     
         #Get parent of element       
         print self.listele.__len__()
         if(len(self.listele) == 0 ) :
@@ -220,18 +236,7 @@ class Application(tk.Frame):
         self.parentList = tk.OptionMenu(self, self.varele , tuple(self.listele))
         self.parentList.grid(row = 4 , column = 7)
 
-        #The input Width
-        self.labelNameWid=tk.Label(self, text="Enter Component Width")
-        self.labelNameWid.grid(row = 5,column = 5  )
-        self.inputWidth = tk.Entry(self, width = 20 )      
-        self.inputWidth.grid(row = 6 , column = 5)
-        # The input height
-        self.labelHeight=tk.Label(self, text="Enter Component Height")
-        self.labelHeight.grid(row = 7,column = 5  )
-        self.inputHeight = tk.Entry(self, width = 20)
-        self.inputHeight.grid(row = 8 , column = 5)
-        self.changeText=tk.Button(self, text='Set Values', command = self.changeText)
-        self.changeText.grid(row = 2, column = 5  )
+       
     
     def show(self, event):         
         # if(event.keysym == "Return"):
